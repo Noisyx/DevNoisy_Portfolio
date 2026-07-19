@@ -1,20 +1,21 @@
 import FadeIn from '../components/FadeIn';
 import Magnet from '../components/Magnet';
 import ContactButton from '../components/ContactButton';
+import HighlightedText from '../components/HighlightedText';
 
-const NAV_LINKS = ['About', 'Price', 'Projects', 'Contact'];
+const NAV_LINKS = ['About', 'Skills', 'Projects'];
 
 export default function HeroSection() {
   return (
-    <section className="relative flex h-screen flex-col" style={{ overflowX: 'clip' }}>
+    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pt-24 sm:px-6 lg:px-8">
       {/* Navbar */}
       <FadeIn delay={0} y={-20} as="nav">
-        <div className="flex justify-between px-6 pt-6 md:px-10 md:pt-8">
+        <div className="fixed left-1/2 top-4 z-50 flex w-[90%] max-w-[500px] -translate-x-1/2 items-center justify-between rounded-full border border-slate-700/50 bg-slate-900/70 px-6 py-4 backdrop-blur-md md:top-8">
           {NAV_LINKS.map((link) => (
             <a
               key={link}
               href={`#${link.toLowerCase()}`}
-              className="text-sm font-medium uppercase tracking-wider text-[#D7E2EA] transition-opacity duration-200 hover:opacity-70 md:text-lg lg:text-[1.4rem]"
+              className="text-xs font-semibold uppercase tracking-widest text-slate-300 transition-all duration-200 hover:text-sky-400 sm:text-sm"
             >
               {link}
             </a>
@@ -22,45 +23,38 @@ export default function HeroSection() {
         </div>
       </FadeIn>
 
-      {/* Hero Heading */}
-      <div className="overflow-hidden">
+      {/* Main Content */}
+      <div className="relative z-10 flex w-full max-w-4xl flex-col items-center text-center">
         <FadeIn delay={0.15} y={40} as="div">
-          <h1 className="hero-heading mt-6 w-full whitespace-nowrap text-[14vw] font-black uppercase leading-none tracking-tight sm:mt-4 sm:text-[15vw] md:-mt-5 md:text-[16vw] lg:text-[17.5vw]">
-            Hi, i&apos;m DevNoisy
+          <h1 className="hero-heading font-heading mb-6 text-4xl font-black uppercase leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-[4.5rem]">
+            <HighlightedText text="Je bâtis les systèmes qui propulsent votre créativité." />
           </h1>
         </FadeIn>
-      </div>
 
-      {/* Portrait */}
-      <Magnet
-        padding={150}
-        strength={3}
-        activeTransition="transform 0.3s ease-out"
-        inactiveTransition="transform 0.6s ease-in-out"
-        className="absolute left-1/2 top-1/2 z-10 w-[280px] -translate-x-1/2 -translate-y-1/2 sm:top-auto sm:bottom-0 sm:w-[360px] sm:translate-y-0 md:w-[440px] lg:w-[520px]"
-      >
-        <FadeIn delay={0.6} y={30}>
-          <img
-            src="https://shrug-person-78902957.figma.site/_components/v2/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png"
-            alt="DevNoisy, 3D creator portrait"
-            className="w-full select-none"
-            draggable={false}
-          />
-        </FadeIn>
-      </Magnet>
-
-      {/* Bottom bar */}
-      <div className="mt-auto flex items-end justify-between px-6 pb-7 sm:px-8 sm:pb-8 md:px-10 md:pb-10">
-        <FadeIn delay={0.35} y={20}>
-          <p
-            className="max-w-[160px] font-light uppercase leading-snug tracking-wide text-[#D7E2EA] sm:max-w-[220px] md:max-w-[260px]"
-            style={{ fontSize: 'clamp(0.75rem, 1.4vw, 1.5rem)' }}
-          >
-            a 3d creator driven by crafting striking and unforgettable projects
+        <FadeIn delay={0.3} y={20}>
+          <p className="mx-auto mb-10 max-w-2xl text-base font-light leading-relaxed text-slate-300 sm:text-lg md:text-xl">
+            <strong className="font-semibold text-slate-50"><HighlightedText text="Développeur Full-stack & Architecte d'automatisation." /></strong> <HighlightedText text="J'aide les créateurs et les startups à structurer leurs idées par le code, de la gestion de paiement SaaS au déploiement d'agents IA." />
           </p>
         </FadeIn>
-        <FadeIn delay={0.5} y={20}>
-          <ContactButton />
+
+        <FadeIn delay={0.45} y={20} className="flex flex-col items-center gap-4 sm:flex-row">
+          <a
+            href="#projects"
+            className="inline-block rounded-full border border-slate-700 bg-slate-800 px-8 py-3 text-xs font-bold uppercase tracking-widest text-slate-50 transition-all duration-300 hover:bg-slate-700 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] active:scale-[0.98] sm:px-10 sm:py-3.5 sm:text-sm md:px-12 md:py-4 md:text-base"
+          >
+            Voir mes projets
+          </a>
+          <ContactButton text="Travaillons ensemble" />
+        </FadeIn>
+
+        <FadeIn delay={0.6} y={20} className="mt-12 sm:mt-16">
+          <div className="flex items-center justify-center gap-2 text-xs font-medium uppercase tracking-widest text-slate-400">
+            <span className="relative flex h-3 w-3">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
+              <span className="relative inline-flex h-3 w-3 rounded-full bg-sky-500"></span>
+            </span>
+            <HighlightedText text="Actuellement en train de concevoir des systèmes avec Next.js & n8n." />
+          </div>
         </FadeIn>
       </div>
     </section>

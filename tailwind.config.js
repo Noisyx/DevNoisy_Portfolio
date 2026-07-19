@@ -4,10 +4,12 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        kanit: ['Kanit', 'sans-serif'],
+        sans: ['var(--font-inter)', 'sans-serif'],
+        heading: ['var(--font-space-grotesk)', 'sans-serif'],
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }
-

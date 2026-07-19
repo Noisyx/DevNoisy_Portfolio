@@ -1,96 +1,72 @@
 import FadeIn from '../components/FadeIn';
-import AnimatedText from '../components/AnimatedText';
 import ContactButton from '../components/ContactButton';
+import { PortableText, PortableTextComponents } from '@portabletext/react';
+import { urlFor } from '../sanity/lib/image';
+import HighlightedText from '../components/HighlightedText';
+import React from 'react';
 
-const ABOUT_TEXT =
-  "With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!";
+export default function AboutSection({ about }: { about?: any }) {
+  if (!about) return null;
 
-export default function AboutSection() {
+  const myPortableTextComponents: PortableTextComponents = {
+    block: {
+      normal: ({ children }) => {
+        return (
+          <p className="mb-4">
+            {React.Children.map(children, (child) => {
+              if (typeof child === 'string') {
+                return <HighlightedText text={child} />;
+              }
+              return child;
+            })}
+          </p>
+        );
+      },
+    },
+    marks: {
+      strong: ({ children }) => <strong className="font-semibold text-slate-50">{children}</strong>,
+    },
+  };
+
   return (
     <section
       id="about"
-      className="relative flex min-h-screen flex-col items-center justify-center gap-16 px-5 py-20 sm:gap-20 sm:px-8 md:gap-24 md:px-10"
+      className="relative flex min-h-screen items-center justify-center px-5 py-20 sm:px-8 md:px-10"
     >
-      {/* Decorative corner images */}
-      <FadeIn
-        delay={0.1}
-        x={-80}
-        y={0}
-        duration={0.9}
-        className="absolute left-[1%] top-[4%] w-[120px] sm:left-[2%] sm:w-[160px] md:left-[4%] md:w-[210px]"
-      >
-        <img
-          src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/moon_icon.11395d36.png"
-          alt=""
-          className="w-full select-none"
-          draggable={false}
-        />
-      </FadeIn>
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-12 lg:flex-row lg:items-center lg:gap-20">
+        
+        {/* Left Side: Photo */}
+        {about.profileImage && (
+          <FadeIn delay={0.1} y={40} className="w-full max-w-sm flex-shrink-0 lg:w-2/5">
+            <div className="relative aspect-square w-full overflow-hidden rounded-[40px] border border-slate-700 bg-slate-800 shadow-[0_0_30px_rgba(56,189,248,0.15)]">
+              <img
+                src={urlFor(about.profileImage).width(800).height(800).url()}
+                alt="Profile"
+                className="h-full w-full object-cover transition-all duration-500 hover:scale-105"
+              />
+            </div>
+          </FadeIn>
+        )}
 
-      <FadeIn
-        delay={0.25}
-        x={-80}
-        y={0}
-        duration={0.9}
-        className="absolute bottom-[8%] left-[3%] w-[100px] sm:left-[6%] sm:w-[140px] md:left-[10%] md:w-[180px]"
-      >
-        <img
-          src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/p59_1.4659672e.png"
-          alt=""
-          className="w-full select-none"
-          draggable={false}
-        />
-      </FadeIn>
+        {/* Right Side: Text */}
+        <div className="flex w-full flex-col items-center text-center lg:w-3/5 lg:items-start lg:text-left">
+          <FadeIn delay={0} y={40}>
+            <h2 className="hero-heading font-heading mb-8 text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-[3.25rem]">
+              <HighlightedText text={about.title} />
+            </h2>
+          </FadeIn>
 
-      <FadeIn
-        delay={0.15}
-        x={80}
-        y={0}
-        duration={0.9}
-        className="absolute right-[1%] top-[4%] w-[120px] sm:right-[2%] sm:w-[160px] md:right-[4%] md:w-[210px]"
-      >
-        <img
-          src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/lego_icon-1.703bb594.png"
-          alt=""
-          className="w-full select-none"
-          draggable={false}
-        />
-      </FadeIn>
+          <FadeIn delay={0.2} y={40} className="prose prose-invert prose-lg mb-10 max-w-none text-slate-300">
+            <PortableText value={about.body} components={myPortableTextComponents} />
+          </FadeIn>
 
-      <FadeIn
-        delay={0.3}
-        x={80}
-        y={0}
-        duration={0.9}
-        className="absolute bottom-[8%] right-[3%] w-[130px] sm:right-[6%] sm:w-[170px] md:right-[10%] md:w-[220px]"
-      >
-        <img
-          src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/Group_134-1.2e04f3ce.png"
-          alt=""
-          className="w-full select-none"
-          draggable={false}
-        />
-      </FadeIn>
+          <FadeIn delay={0.3} y={40}>
+            <ContactButton text="Travaillons ensemble" />
+          </FadeIn>
+        </div>
 
-      {/* Heading + paragraph block */}
-      <div className="flex flex-col items-center gap-10 sm:gap-14 md:gap-16">
-        <FadeIn delay={0} y={40}>
-          <h2
-            className="hero-heading text-center font-black uppercase leading-none tracking-tight"
-            style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
-          >
-            About me
-          </h2>
-        </FadeIn>
-
-        <AnimatedText
-          text={ABOUT_TEXT}
-          className="max-w-[560px] text-center font-medium leading-relaxed text-[#D7E2EA]"
-          style={{ fontSize: 'clamp(1rem, 2vw, 1.35rem)' }}
-        />
       </div>
-
-      <ContactButton />
     </section>
   );
 }
+

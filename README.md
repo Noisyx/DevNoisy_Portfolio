@@ -1,4 +1,4 @@
-# DevNoisy — 3D Creator Portfolio
+# DevNoisy — Portfolio
 
 Landing page built with React, TypeScript, Tailwind CSS, and Framer Motion.
 

@@ -17,27 +17,27 @@ function ProjectCard({ project, index, totalCards }: { project: any; index: numb
   return (
     <div
       ref={cardRef}
-      className="sticky top-24 h-[85vh] md:top-32"
-      style={{ top: `${index * 28}px` }}
+      className="sticky h-[85vh] pt-4"
+      style={{ top: `calc(10vh + ${index * 30}px)` }}
     >
       <motion.div
         style={{ scale }}
-        className="flex h-full flex-col gap-4 rounded-[40px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:gap-6 sm:rounded-[50px] sm:p-6 md:gap-8 md:rounded-[60px] md:p-8"
+        className="flex h-full flex-col gap-4 rounded-[40px] border border-slate-700 bg-slate-800 p-4 transition-all duration-500 hover:shadow-[0_0_25px_rgba(56,189,248,0.2)] sm:gap-6 sm:rounded-[50px] sm:p-6 md:gap-8 md:rounded-[60px] md:p-8"
       >
         {/* Top row */}
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-4 sm:gap-6 md:gap-8">
             <span
-              className="hero-heading font-black leading-none"
+              className="hero-heading font-heading font-black leading-none"
               style={{ fontSize: 'clamp(3rem, 10vw, 140px)' }}
             >
               {(index + 1).toString().padStart(2, '0')}
             </span>
             <div className="flex flex-col gap-1">
-              <span className="text-xs font-medium uppercase tracking-widest text-[#D7E2EA]/60 sm:text-sm">
+              <span className="text-xs font-medium uppercase tracking-widest text-slate-400 sm:text-sm">
                 {project.techStack?.join(' • ')}
               </span>
-              <span className="text-lg font-medium uppercase tracking-wide text-[#D7E2EA] sm:text-2xl md:text-3xl">
+              <span className="font-heading text-lg font-bold uppercase tracking-wide text-slate-50 sm:text-2xl md:text-3xl">
                 {project.name}
               </span>
             </div>
@@ -58,8 +58,8 @@ function ProjectCard({ project, index, totalCards }: { project: any; index: numb
               />
             </div>
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-[#1A1A1A] rounded-[40px] sm:rounded-[50px] md:rounded-[60px]" style={{ minHeight: '40vh' }}>
-              <span className="text-[#D7E2EA]/50">No image</span>
+            <div className="flex h-full w-full items-center justify-center rounded-[40px] bg-slate-900 sm:rounded-[50px] md:rounded-[60px]" style={{ minHeight: '40vh' }}>
+              <span className="text-slate-500">No image</span>
             </div>
           )}
         </div>
@@ -72,11 +72,11 @@ export default function ProjectsSection({ projects }: { projects: any[] }) {
   return (
     <section
       id="projects"
-      className="relative z-10 -mt-10 rounded-t-[40px] bg-[#0C0C0C] px-5 pb-20 pt-20 sm:-mt-12 sm:rounded-t-[50px] sm:px-8 md:-mt-14 md:rounded-t-[60px] md:px-10"
+      className="relative z-10 -mt-10 rounded-t-[40px] bg-slate-900 px-5 pb-20 pt-20 sm:-mt-12 sm:rounded-t-[50px] sm:px-8 md:-mt-14 md:rounded-t-[60px] md:px-10"
     >
       <FadeIn delay={0} y={30}>
         <h2
-          className="hero-heading mb-16 text-center font-black uppercase leading-none tracking-tight sm:mb-20 md:mb-28"
+          className="hero-heading font-heading mb-16 text-center font-black uppercase leading-none tracking-tight sm:mb-20 md:mb-28"
           style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
         >
           Projects
