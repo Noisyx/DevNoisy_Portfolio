@@ -18,7 +18,7 @@ export default function PortfolioClient({ projects, skills, stack, about }: Port
   return (
     <div className="min-h-screen bg-slate-900">
       <div className="mx-auto max-w-[1440px] bg-slate-900" style={{ overflowX: 'clip' }}>
-        <HeroSection />
+        <HeroSection stack={stack} />
         <MarqueeSection stack={stack} />
         <AboutSection about={about} />
         <SkillsSection skills={skills} />

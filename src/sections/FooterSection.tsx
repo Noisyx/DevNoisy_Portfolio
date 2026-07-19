@@ -5,8 +5,12 @@ export default function FooterSection() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative z-10 bg-slate-950 px-6 py-20 sm:px-8 md:px-10 lg:py-24">
-      <div className="mx-auto max-w-6xl">
+    <footer className="relative z-10 overflow-hidden bg-slate-950 px-6 py-20 sm:px-8 md:px-10 lg:py-32">
+      {/* Background Grid & Glow */}
+      <div className="absolute top-0 left-0 h-[1px] w-full bg-gradient-to-r from-transparent via-sky-500/30 to-transparent"></div>
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:linear-gradient(to_bottom,transparent_0%,#000_100%)]"></div>
+      
+      <div className="relative z-10 mx-auto max-w-6xl">
         <div className="flex flex-col items-center justify-between gap-16 md:flex-row md:items-end md:gap-12">
           
           <div className="flex flex-col items-center text-center md:items-start md:text-left">
