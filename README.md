@@ -1,4 +1,4 @@
-# Jack — 3D Creator Portfolio
+# DevNoisy — 3D Creator Portfolio
 
 Landing page built with React, TypeScript, Tailwind CSS, and Framer Motion.
 

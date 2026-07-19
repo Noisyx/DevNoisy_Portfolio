@@ -25,7 +25,7 @@ Cette feuille de route détaille les étapes pour construire ton portfolio évol
 ## Phase 3 : Automatisation & Optimisation
 - [x] **Configuration de l'ISR (Incremental Static Regeneration)** :
     - Configurer `revalidate` dans tes pages pour que le site se mette à jour sans re-build total.
-- [ ] **Déploiement** :
+- [x] **Déploiement** :
     - Pousser le code sur GitHub.
     - Connecter le dépôt à Vercel.
     - Configurer les variables d'environnement sur Vercel.
