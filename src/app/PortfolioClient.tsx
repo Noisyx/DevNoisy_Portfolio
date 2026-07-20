@@ -1,7 +1,7 @@
 "use client";
 
 import HeroSection from '../sections/HeroSection';
-import MarqueeSection from '../sections/MarqueeSection';
+import StackSection from '../sections/StackSection';
 import AboutSection from '../sections/AboutSection';
 import SkillsSection from '../sections/SkillsSection';
 import ProjectsSection from '../sections/ProjectsSection';
@@ -10,16 +10,15 @@ import FooterSection from '../sections/FooterSection';
 interface PortfolioClientProps {
   projects: any[];
   skills: any[];
-  stack: any[];
   about: any;
 }
 
-export default function PortfolioClient({ projects, skills, stack, about }: PortfolioClientProps) {
+export default function PortfolioClient({ projects, skills, about }: PortfolioClientProps) {
   return (
     <div className="min-h-screen bg-slate-900">
       <div className="mx-auto max-w-[1440px] bg-slate-900" style={{ overflowX: 'clip' }}>
-        <HeroSection stack={stack} />
-        <MarqueeSection stack={stack} />
+        <HeroSection />
+        <StackSection />
         <AboutSection about={about} />
         <SkillsSection skills={skills} />
         <ProjectsSection projects={projects} />

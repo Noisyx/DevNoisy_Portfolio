@@ -6,8 +6,7 @@ import GooeyNav from '../components/GooeyNav';
 
 const NAV_LINKS = ['About', 'Skills', 'Projects'];
 
-export default function HeroSection({ stack = [] }: { stack?: any[] }) {
-  const stackNames = stack.map((s) => s.name);
+export default function HeroSection() {
 
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-5 pt-28 pb-10 sm:px-8 lg:px-12">
@@ -73,20 +72,6 @@ export default function HeroSection({ stack = [] }: { stack?: any[] }) {
             <ContactButton text="Travaillons ensemble" />
           </FadeIn>
 
-          {/* Proof */}
-          {stackNames.length > 0 && (
-            <FadeIn delay={0.5} y={20}>
-              <div className="flex flex-col gap-2 rounded-2xl border border-white/10 bg-slate-900/40 p-5 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl lg:flex-row lg:items-center lg:gap-4">
-                <span className="whitespace-nowrap text-sm font-bold text-slate-50 uppercase tracking-widest">
-                  {stack.length} technologies
-                </span>
-                <span className="hidden h-1 w-1 rounded-full bg-slate-600 lg:block"></span>
-                <span className="text-sm font-medium text-slate-300 leading-relaxed">
-                  {stackNames.join(' • ')}
-                </span>
-              </div>
-            </FadeIn>
-          )}
         </div>
 
         {/* Right Column: Mockup */}
