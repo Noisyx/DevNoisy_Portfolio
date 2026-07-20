@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import FadeIn from '../components/FadeIn';
 import LiveProjectButton from '../components/LiveProjectButton';
 import { urlFor } from '../sanity/lib/image';
-
+import BorderGlow from '../components/BorderGlow';
 function ProjectCard({ project, index, totalCards }: { project: any; index: number; totalCards: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -20,49 +20,56 @@ function ProjectCard({ project, index, totalCards }: { project: any; index: numb
       className="sticky h-[85vh] pt-4"
       style={{ top: `calc(10vh + ${index * 30}px)` }}
     >
-      <motion.div
-        style={{ scale }}
-        className="flex h-full flex-col gap-4 rounded-[40px] border border-slate-700 bg-slate-800 p-4 transition-all duration-500 hover:shadow-[0_0_25px_rgba(56,189,248,0.2)] sm:gap-6 sm:rounded-[50px] sm:p-6 md:gap-8 md:rounded-[60px] md:p-8"
-      >
-        {/* Top row */}
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-4 sm:gap-6 md:gap-8">
-            <span
-              className="hero-heading font-heading font-black leading-none"
-              style={{ fontSize: 'clamp(3rem, 10vw, 140px)' }}
-            >
-              {(index + 1).toString().padStart(2, '0')}
-            </span>
-            <div className="flex flex-col gap-1">
-              <span className="text-xs font-medium uppercase tracking-widest text-slate-400 sm:text-sm">
-                {project.techStack?.join(' • ')}
-              </span>
-              <span className="font-heading text-lg font-bold uppercase tracking-wide text-slate-50 sm:text-2xl md:text-3xl">
-                {project.name}
-              </span>
+      <motion.div style={{ scale, height: '100%' }}>
+        <BorderGlow
+          className="h-full w-full"
+          backgroundColor="#0f172a"
+          glowColor="199 89 48"
+          borderRadius={40}
+          animated={false}
+        >
+          <div className="flex h-full flex-col gap-4 p-4 sm:gap-6 sm:p-6 md:gap-8 md:p-8">
+            {/* Top row */}
+            <div className="relative z-10 flex flex-wrap items-center justify-between gap-4">
+              <div className="flex items-center gap-4 sm:gap-6 md:gap-8">
+                <span
+                  className="hero-heading font-heading font-black leading-none"
+                  style={{ fontSize: 'clamp(3rem, 10vw, 140px)' }}
+                >
+                  {(index + 1).toString().padStart(2, '0')}
+                </span>
+                <div className="flex flex-col gap-1">
+                  <span className="text-xs font-medium uppercase tracking-widest text-slate-400 sm:text-sm">
+                    {project.techStack?.join(' • ')}
+                  </span>
+                  <span className="font-heading text-lg font-bold uppercase tracking-wide text-slate-50 sm:text-2xl md:text-3xl">
+                    {project.name}
+                  </span>
+                </div>
+              </div>
+              {project.link && <LiveProjectButton href={project.link} />}
+            </div>
+
+            {/* Bottom row - image grid */}
+            <div className="relative z-10 flex flex-1 gap-3 sm:gap-4 h-full">
+              {project.image ? (
+                <div className="w-full h-full">
+                  <img
+                    src={urlFor(project.image).width(1200).height(800).url()}
+                    alt={`${project.name} overview`}
+                    loading="lazy"
+                    className="h-full w-full rounded-[24px] object-cover sm:rounded-[32px] md:rounded-[40px]"
+                    style={{ maxHeight: '60vh' }}
+                  />
+                </div>
+              ) : (
+                <div className="flex h-full w-full items-center justify-center rounded-[24px] bg-slate-900 sm:rounded-[32px] md:rounded-[40px]" style={{ minHeight: '40vh' }}>
+                  <span className="text-slate-500">No image</span>
+                </div>
+              )}
             </div>
           </div>
-          {project.link && <LiveProjectButton href={project.link} />}
-        </div>
-
-        {/* Bottom row - image grid */}
-        <div className="flex flex-1 gap-3 sm:gap-4 h-full">
-          {project.image ? (
-            <div className="w-full h-full">
-              <img
-                src={urlFor(project.image).width(1200).height(800).url()}
-                alt={`${project.name} overview`}
-                loading="lazy"
-                className="h-full w-full rounded-[40px] object-cover sm:rounded-[50px] md:rounded-[60px]"
-                style={{ maxHeight: '60vh' }}
-              />
-            </div>
-          ) : (
-            <div className="flex h-full w-full items-center justify-center rounded-[40px] bg-slate-900 sm:rounded-[50px] md:rounded-[60px]" style={{ minHeight: '40vh' }}>
-              <span className="text-slate-500">No image</span>
-            </div>
-          )}
-        </div>
+        </BorderGlow>
       </motion.div>
     </div>
   );

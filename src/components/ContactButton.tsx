@@ -4,14 +4,37 @@ interface ContactButtonProps {
   text?: string;
 }
 
+import SpecularButton from './SpecularButton';
+
 export default function ContactButton({ className = '', onClick, text = 'Contact Me' }: ContactButtonProps) {
+  const handleClick = (e: any) => {
+    if (onClick) onClick();
+    window.location.href = 'mailto:devnoisy@gmail.com';
+  };
+
   return (
-    <a
-      href="mailto:devnoisy@gmail.com"
-      onClick={onClick}
-      className={`inline-block rounded-full bg-sky-400 px-8 py-3 text-xs font-bold uppercase tracking-widest text-slate-900 transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] active:scale-[0.98] sm:px-10 sm:py-3.5 sm:text-sm md:px-12 md:py-4 md:text-base ${className}`}
-    >
-      {text}
-    </a>
+    <div className={className}>
+      <SpecularButton
+        size="lg"
+        radius={9999} // Max radius for pill shape
+        tint="#38bdf8" // sky-400 equivalent for the background/tint
+        tintOpacity={0.1}
+        blur={10}
+        textColor="#38bdf8"
+        lineColor="#38bdf8"
+        baseColor="#0f172a"
+        intensity={1.5}
+        shineSize={15}
+        shineFade={50}
+        thickness={1.5}
+        speed={0.4}
+        followMouse
+        proximity={300}
+        autoAnimate={false}
+        onClick={handleClick}
+      >
+        {text}
+      </SpecularButton>
+    </div>
   );
 }

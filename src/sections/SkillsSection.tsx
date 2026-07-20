@@ -1,6 +1,8 @@
 import FadeIn from '../components/FadeIn';
 import { urlFor } from '../sanity/lib/image';
 
+import BorderGlow from '../components/BorderGlow';
+
 export default function SkillsSection({ skills }: { skills: any[] }) {
   return (
     <section
@@ -20,25 +22,31 @@ export default function SkillsSection({ skills }: { skills: any[] }) {
         {skills.map((skill, i) => {
           return (
             <FadeIn key={skill._id || i} delay={i * 0.1} y={30}>
-              <div
-                className="flex flex-col h-full items-start gap-6 rounded-3xl border border-slate-700 bg-slate-800 p-6 sm:p-8 transition-shadow duration-300 hover:shadow-[0_0_20px_rgba(56,189,248,0.2)]"
+              <BorderGlow
+                className="h-full w-full"
+                backgroundColor="#0f172a" // slate-900
+                glowColor="199 89 48" // sky-500 equivalent approx HSL (199, 89%, 48%)
+                borderRadius={24}
+                animated={false}
               >
-                {skill.icon && (
-                  <div className="flex-shrink-0">
-                     <img src={urlFor(skill.icon).width(60).height(60).url()} alt={skill.name} className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover" />
-                  </div>
-                )}
+                <div className="flex flex-col h-full items-start gap-6 p-6 sm:p-8">
+                  {skill.icon && (
+                    <div className="relative z-10 flex-shrink-0">
+                       <img src={urlFor(skill.icon).width(60).height(60).url()} alt={skill.name} className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover" />
+                    </div>
+                  )}
 
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-heading font-semibold uppercase text-slate-50 text-xl sm:text-2xl">
-                    {skill.name}
-                  </h3>
-                  <p className="font-light leading-relaxed text-slate-400 text-sm sm:text-base">
-                    Niveau: <strong className="capitalize text-slate-300">{skill.level}</strong> <br />
-                    Catégorie: <strong className="capitalize text-slate-300">{skill.category}</strong>
-                  </p>
+                  <div className="relative z-10 flex flex-col gap-2">
+                    <h3 className="font-heading font-semibold uppercase text-slate-50 text-xl sm:text-2xl">
+                      {skill.name}
+                    </h3>
+                    <p className="font-light leading-relaxed text-slate-400 text-sm sm:text-base">
+                      Niveau: <strong className="capitalize text-slate-300">{skill.level}</strong> <br />
+                      Catégorie: <strong className="capitalize text-slate-300">{skill.category}</strong>
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </BorderGlow>
             </FadeIn>
           );
         })}

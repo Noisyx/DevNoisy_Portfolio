@@ -2,6 +2,7 @@ import FadeIn from '../components/FadeIn';
 import ContactButton from '../components/ContactButton';
 import HighlightedText from '../components/HighlightedText';
 import WorkflowMockup from '../components/WorkflowMockup';
+import GooeyNav from '../components/GooeyNav';
 
 const NAV_LINKS = ['About', 'Skills', 'Projects'];
 
@@ -14,17 +15,18 @@ export default function HeroSection({ stack = [] }: { stack?: any[] }) {
       <div className="absolute top-[20%] left-0 h-[1px] w-full bg-gradient-to-r from-transparent via-sky-500/40 to-transparent shadow-[0_0_30px_rgba(56,189,248,0.4)]"></div>
       
       {/* Navbar */}
-      <FadeIn delay={0} y={-20} as="nav">
-        <div className="fixed left-1/2 top-4 z-50 flex w-[90%] max-w-[500px] -translate-x-1/2 items-center justify-between rounded-full border border-slate-700/50 bg-slate-900/70 px-6 py-4 backdrop-blur-md md:top-8">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link}
-              href={`#${link.toLowerCase()}`}
-              className="text-xs font-semibold uppercase tracking-widest text-slate-300 transition-all duration-200 hover:text-sky-400 sm:text-sm"
-            >
-              {link}
-            </a>
-          ))}
+      <FadeIn delay={0} y={-20} as="nav" className="fixed inset-x-0 top-4 z-50 flex justify-center md:top-8 pointer-events-none">
+        <div className="pointer-events-auto rounded-full border border-slate-700/50 bg-slate-900/70 p-2 backdrop-blur-md shadow-lg shadow-slate-900/20">
+          <GooeyNav
+            items={NAV_LINKS.map(link => ({ label: link, href: `#${link.toLowerCase()}` }))}
+            particleCount={12}
+            particleDistances={[70, 15]}
+            particleR={100}
+            initialActiveIndex={-1}
+            animationTime={600}
+            timeVariance={300}
+            colors={[1, 2, 3, 1, 4, 3, 2, 1]}
+          />
         </div>
       </FadeIn>
 
